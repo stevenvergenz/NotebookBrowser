@@ -38,9 +38,10 @@ Widget::Widget(QWidget *parent) : QWebView(parent), lockAction(this), backAction
 	}
 
 	// set up cookie jar
-	QNetworkAccessManager* netManager = new QNetworkAccessManager(this);
-	netManager->setCookieJar( new CookieJar(this) );
-	page()->setNetworkAccessManager(netManager);
+	//QNetworkAccessManager* netManager = new QNetworkAccessManager(this);
+	//netManager->setCookieJar( new CookieJar(this) );
+	//page()->setNetworkAccessManager(netManager);
+	page()->networkAccessManager()->setCookieJar( new CookieJar(this) );
 	//QWebSettings::globalSettings()->setThirdPartyCookiePolicy( QWebSettings::AlwaysBlockThirdPartyCookies );
 
 	// connect the lock shortcut
