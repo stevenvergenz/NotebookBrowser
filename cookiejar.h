@@ -4,6 +4,10 @@
 #include <QNetworkCookieJar>
 #include <QNetworkCookie>
 #include <QSettings>
+#include <QStringList>
+#include <QVariantList>
+#include <QList>
+#include <QDebug>
 
 class CookieJar : public QNetworkCookieJar
 {
@@ -11,6 +15,7 @@ class CookieJar : public QNetworkCookieJar
 public:
 	explicit CookieJar(QObject *parent = 0);
 	bool setCookiesFromUrl(const QList<QNetworkCookie> & cookieList, const QUrl & url);
+	QList<QNetworkCookie> cookiesForUrl(const QUrl & url) const;
 
 signals:
 	

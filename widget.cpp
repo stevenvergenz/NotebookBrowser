@@ -1,6 +1,6 @@
 #include "widget.h"
 
-const QString Widget::defaultPage = "about:blank";
+const QString Widget::defaultPage = "http://imaginarium.adlnet.org/ImaginariumNotebook.php?id=test";
 
 Widget::Widget(QWidget *parent) : QWebView(parent), lockAction(this), backAction(this),
 	forwardAction(this), locked(false), singleLock(NULL)
@@ -31,7 +31,7 @@ Widget::Widget(QWidget *parent) : QWebView(parent), lockAction(this), backAction
 	QCoreApplication::setOrganizationName("ADL");
 	QCoreApplication::setOrganizationDomain("adlnet.gov");
 	QCoreApplication::setApplicationName("Notebook Browser");
-
+	QSettings::setDefaultFormat( QSettings::IniFormat );
 	QSettings settings;
 	if( settings.contains("windowGeometry") ){
 		restoreGeometry( settings.value("windowGeometry").toByteArray() );
@@ -41,6 +41,7 @@ Widget::Widget(QWidget *parent) : QWebView(parent), lockAction(this), backAction
 	QNetworkAccessManager* netManager = new QNetworkAccessManager(this);
 	netManager->setCookieJar( new CookieJar(this) );
 	page()->setNetworkAccessManager(netManager);
+	//QWebSettings::globalSettings()->setThirdPartyCookiePolicy( QWebSettings::AlwaysBlockThirdPartyCookies );
 
 	// connect the lock shortcut
 	lockAction.setShortcut( QKeySequence("Ctrl+l") );
