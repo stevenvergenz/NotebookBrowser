@@ -4,15 +4,7 @@ CookieJar::CookieJar(QObject *parent) : QNetworkCookieJar(parent)
 {
 	// load cookies from files
 	QSettings settings;
-	/*qDebug() << "Loading cookies" << endl;
-	for( int i=0; i<settings.beginReadArray("cookies"); i++ )
-	{
-		settings.setArrayIndex(i);
-		qDebug() << "   " << settings.value("cookie").toByteArray() << endl;
-		cookieList += QNetworkCookie::parseCookies( settings.value("cookie").toByteArray() );
-	}
-	settings.endArray();
-	setAllCookies(cookieList);*/
+
 	settings.beginGroup("cookies");
 
 	// get list of stored urls
@@ -24,16 +16,28 @@ CookieJar::CookieJar(QObject *parent) : QNetworkCookieJar(parent)
 	}
 
 	// load cookies for each url
-	foreach( QString url, urlList ){
-		qDebug() << "Loading cookies for " << url << endl;
+	foreach( QString url, urlList )
+	{
+		QList<QNetworkCookie> freshCookieList;
+
+		//qDebug() << "Loading cookies for " << url << endl;
 		int size = settings.beginReadArray(url);
-		for( int i=0; i<size; i++ ){
+		for( int i=0; i<size; i++ )
+		{
 			settings.setArrayIndex(i);
-			setCookiesFromUrl( QNetworkCookie::parseCookies(
-				settings.value("cookie").toByteArray()), QUrl(url.replace("|","/")) );
-			qDebug() << "   " << settings.value("cookie").toByteArray() << endl;
+			QList<QNetworkCookie> tempCookieList =
+				QNetworkCookie::parseCookies( settings.value("cookie").toByteArray() );
+			foreach( QNetworkCookie c, tempCookieList ){
+				if( c.expirationDate() > QDateTime::currentDateTime() ){
+					freshCookieList += c;
+				}
+			}
+
+			//qDebug() << "   " << settings.value("cookie").toByteArray() << endl;
 		}
 		settings.endArray();
+
+		setCookiesFromUrl( freshCookieList, QUrl(url.replace("|","/")) );
 	}
 
 	settings.endGroup();
@@ -44,7 +48,7 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> & cookieList, cons
 	// save cookies to files
 	QSettings settings;
 
-	qDebug() << "Saving cookies for " << url.toString() << endl;
+	//qDebug() << "Saving cookies for " << url.toString() << endl;
 
 	// build list of cookies
 	settings.beginGroup("cookies");
@@ -65,11 +69,11 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> & cookieList, cons
 
 QList<QNetworkCookie> CookieJar::cookiesForUrl(const QUrl & url) const
 {
-	qDebug() << "Pulling cookie for " << url.toString() << endl;
+	//qDebug() << "Pulling cookie for " << url.toString() << endl;
 	QList<QNetworkCookie> ret = QNetworkCookieJar::cookiesForUrl(url);
-	foreach( QNetworkCookie cookie, ret ){
+	/*foreach( QNetworkCookie cookie, ret ){
 		qDebug() << "   " << cookie.toRawForm() << endl;
-	}
+	}*/
 
 	return ret;
 }
