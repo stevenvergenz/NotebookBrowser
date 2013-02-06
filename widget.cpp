@@ -18,10 +18,12 @@ Widget::Widget(QWidget *parent) : QWebView(parent), lockAction(this), backAction
 			socket.waitForBytesWritten();
 			qDebug() << "URL sent" << endl;
 		}
+		argsPassed = true;
 		this->deleteLater();
 		return;
 	}
 	else {
+		argsPassed = false;
 		singleLock = new QLocalServer(this);
 		singleLock->listen("NotebookBrowser");
 		connect( singleLock, SIGNAL(newConnection()), this, SLOT(acceptSocketUrls()) );
@@ -131,4 +133,11 @@ void Widget::closeEvent(QCloseEvent* e)
 	QSettings settings;
 	settings.setValue("windowGeometry", saveGeometry());
 	e->accept();
+}
+
+void Widget::show()
+{
+	if( !argsPassed ){
+		QWidget::show();
+	}
 }

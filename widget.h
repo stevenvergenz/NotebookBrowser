@@ -26,6 +26,7 @@ public slots:
 	void toggleWindowLock();
 	void updateWindowTitle(QString title);
 	void acceptSocketUrls();
+	void show();
 
 protected:
 	void closeEvent(QCloseEvent* e);
@@ -38,7 +39,9 @@ private:
 	QAction forwardAction;
 
 	bool locked;
+
 	QLocalServer* singleLock;
+	bool argsPassed;
 };
 
 #endif // WIDGET_H
