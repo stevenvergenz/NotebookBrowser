@@ -1,6 +1,6 @@
 #include "widget.h"
 
-const QString Widget::defaultPage = "http://imaginarium.adlnet.org/ImaginariumNotebook.php?id=test";
+const QString Widget::defaultPage = "about:blank";
 
 Widget::Widget(QWidget *parent) : QWebView(parent), lockAction(this), backAction(this),
 	forwardAction(this), locked(false), singleLock(NULL)
@@ -43,7 +43,7 @@ Widget::Widget(QWidget *parent) : QWebView(parent), lockAction(this), backAction
 
 	// set up cookie jar
 	page()->networkAccessManager()->setCookieJar( new CookieJar(this) );
-	//QWebSettings::globalSettings()->setThirdPartyCookiePolicy( QWebSettings::AlwaysBlockThirdPartyCookies );
+	page()->settings()->setAttribute( QWebSettings::PluginsEnabled, true );
 
 	// connect the lock shortcut
 	lockAction.setShortcut( QKeySequence("Ctrl+l") );
