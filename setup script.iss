@@ -22,7 +22,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName=Notebook Browser
 DisableProgramGroupPage=yes
-OutputBaseFilename=NotebookBrowser-setup
+OutputBaseFilename=NotebookBrowser-{#MyAppVersion}-setup
 Compression=lzma
 SolidCompression=yes
 
