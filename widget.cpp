@@ -20,6 +20,8 @@ Widget::Widget(QWidget *parent) : QWebView(parent), lockAction(this), backAction
 		}
 		argsPassed = true;
 		this->deleteLater();
+		qApp->quit();
+		exit(0);
 		return;
 	}
 	else {
