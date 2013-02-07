@@ -19,4 +19,5 @@ SOURCES += main.cpp\
 HEADERS  += widget.h \
     cookiejar.h
 
-FORMS    +=
+RESOURCES += \
+    icons.qrc
