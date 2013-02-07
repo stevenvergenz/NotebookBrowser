@@ -1,0 +1,47 @@
+Windows Registry Editor Version 5.00
+ 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\NotebookBrowser]
+@="NotebookBrowser"
+ 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\NotebookBrowser\Capabilities]
+"ApplicationName"="NotebookBrowser"
+"ApplicationIcon"="C:\\NotebookBrowser\\NotebookBrowser-1.0.4-release\\NotebookBrowser.exe,0"
+"ApplicationDescription"="NotebookBrowser manually added via registry."
+ 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\NotebookBrowser\Capabilities\FileAssociations]
+".xhtml"="NotebookBrowserHTML"
+".xht"="NotebookBrowserHTML"
+".shtml"="NotebookBrowserHTML"
+".html"="NotebookBrowserHTML"
+".htm"="NotebookBrowserHTML"
+ 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\NotebookBrowser\Capabilities\StartMenu]
+"StartMenuInternet"="NotebookBrowser"
+ 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\NotebookBrowser\Capabilities\URLAssociations]
+"https"="NotebookBrowserHTML"
+"http"="NotebookBrowserHTML"
+"ftp"="NotebookBrowserHTML"
+ 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\NotebookBrowser\DefaultIcon]
+@="C:\\NotebookBrowser\\NotebookBrowser-1.0.4-release\\NotebookBrowser.exe,0"
+ 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\NotebookBrowser\shell]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\NotebookBrowser\shell\open]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\NotebookBrowser\shell\open\command]
+@="\"C:\\NotebookBrowser\\NotebookBrowser-1.0.4-release\\NotebookBrowser.exe\""
+ 
+[HKEY_LOCAL_MACHINE\SOFTWARE\RegisteredApplications]
+"NotebookBrowser"="Software\\Clients\\StartMenuInternet\\NotebookBrowser\\Capabilities"
+ 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\NotebookBrowserHTML]
+"URL Protocol"=""
+@="NotebookBrowser HTML Document"
+ 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\NotebookBrowserHTML\DefaultIcon]
+@="C:\\NotebookBrowser\\NotebookBrowser-1.0.4-release\\NotebookBrowser.exe,0"
+ 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\NotebookBrowserHTML\shell]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\NotebookBrowserHTML\shell\open]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\NotebookBrowserHTML\shell\open\command]
+@="\"C:\\NotebookBrowser\\NotebookBrowser-1.0.4-release\\NotebookBrowser.exe\" \"%1\""
