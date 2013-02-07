@@ -21,3 +21,5 @@ HEADERS  += widget.h \
 
 RESOURCES += \
     icons.qrc
+
+RC_FILE = appicon.rc
