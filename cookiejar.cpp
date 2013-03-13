@@ -37,7 +37,7 @@ CookieJar::CookieJar(QObject *parent) : QNetworkCookieJar(parent)
 		}
 		settings.endArray();
 
-		setCookiesFromUrl( freshCookieList, QUrl(url.replace("|","/")) );
+		setCookiesFromUrl( freshCookieList, QUrl(url) );
 	}
 
 	settings.endGroup();
@@ -52,7 +52,8 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> & cookieList, cons
 
 	// build list of cookies
 	settings.beginGroup("cookies");
-	settings.beginWriteArray(url.toString().replace("/","|"));
+	settings.beginWriteArray(url.host());
+
 	int i=0;
 	foreach( QNetworkCookie cookie, cookieList ){
 		if( !cookie.isSessionCookie() ){
